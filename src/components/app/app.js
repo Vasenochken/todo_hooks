@@ -16,38 +16,45 @@ const App = () => {
   };
 
   const onItemAdd = (text, min, sec) => {
-    const newItem = {
-      label: text,
-      done: false,
-      date: new Date(),
-      id: generateId(),
-      timer: +min * 60 + +sec,
-    };
-    const newArr = [...todoData];
-    newArr.push(newItem);
-    setTodoData((todoData) => newArr);
+    setTodoData((oldTodoData) => {
+      const newItem = {
+        label: text,
+        done: false,
+        date: new Date(),
+        id: generateId(),
+        timer: +min * 60 + +sec,
+      };
+      const newArr = [...oldTodoData];
+      newArr.push(newItem);
+      return newArr;
+    });
   };
 
   const deleteItem = (id) => {
-    const index = todoData.findIndex((el) => el.id === id);
-    const newArr = [...todoData];
-    newArr.splice(index, 1);
-    setTodoData((todoData) => newArr);
+    setTodoData((oldTodoData) => {
+      const index = todoData.findIndex((el) => el.id === id);
+      const newArr = [...oldTodoData];
+      newArr.splice(index, 1);
+      return newArr;
+    });
   };
 
   const completeItem = (id, done) => {
-    const newArr = todoData.map((el) => {
-      if (el.id === id) el.done = done;
-      return el;
+    setTodoData((oldTodoData) => {
+      return oldTodoData.map((el) => {
+        if (el.id === id) el.done = done;
+        return el;
+      });
     });
-    setTodoData((todoData) => newArr);
   };
 
   const updateEdit = (id, text) => {
-    const index = todoData.findIndex((el) => el.id === id);
-    const newArr = [...todoData];
-    newArr[index].label = text;
-    setTodoData((todoData) => newArr);
+    setTodoData((oldTodoData) => {
+      const index = todoData.findIndex((el) => el.id === id);
+      const newArr = [...oldTodoData];
+      newArr[index].label = text;
+      return newArr;
+    });
   };
 
   const changeFilter = (filterName) => {
@@ -55,8 +62,10 @@ const App = () => {
   };
 
   const clear = () => {
-    const newArr = todoData.filter((elem) => elem.done !== true);
-    setTodoData((todoData) => newArr);
+    setTodoData((oldTodoData) => {
+      const newArr = oldTodoData.filter((el) => el.done !== true);
+      return newArr;
+    });
   };
 
   const filterItems = (todoData, filter) => {

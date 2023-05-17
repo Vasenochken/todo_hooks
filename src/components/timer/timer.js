@@ -8,7 +8,7 @@ const Timer = ({ initialTime }) => {
     let intervalId;
     if (isRunning && time > 0) {
       intervalId = setInterval(() => {
-        setTime((time) => time - 1);
+        setTime((pastState) => pastState - 1);
       }, 1000);
     }
     return () => clearInterval(intervalId);
