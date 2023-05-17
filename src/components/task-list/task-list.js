@@ -1,4 +1,4 @@
-import Task from "../task/task";
+import Task from '../task/task';
 
 const TaskList = ({ todoData, deleteItem, completeItem, updateEdit }) => {
   return (

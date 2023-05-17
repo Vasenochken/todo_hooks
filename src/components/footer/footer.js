@@ -1,4 +1,4 @@
-import TaskFilter from "../tasks-filter/tasks-filter.js";
+import TaskFilter from '../tasks-filter/tasks-filter.js';
 
 const Footer = ({ clear, changeFilter, filter, count }) => {
   return (

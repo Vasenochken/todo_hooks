@@ -1,31 +1,21 @@
-import { formatDistanceToNow } from "date-fns";
-import { useState } from "react";
-import Timer from "../timer/timer";
+import { formatDistanceToNow } from 'date-fns';
+import { useState } from 'react';
 
-const Task = ({
-  id,
-  label,
-  done,
-  timer,
-  deleteItem,
-  completeItem,
-  updateEdit,
-}) => {
-  const [value, setValue] = useState("");
+import Timer from '../timer/timer';
+
+const Task = ({ id, label, done, timer, deleteItem, completeItem, updateEdit }) => {
+  const [value, setValue] = useState('');
   const [edit, setEdit] = useState(false);
 
   const onEdit = () => {
-    console.log(label);
     setValue(label);
     setEdit(true);
   };
 
   const onSubmitEdit = (e) => {
     e.preventDefault();
-    console.log(e.target);
-    console.log(value);
     updateEdit(id, value);
-    setValue("");
+    setValue('');
     setEdit(false);
   };
 
@@ -33,9 +23,9 @@ const Task = ({
     includeSeconds: true,
     addSuffix: true,
   });
-  let liClass = " ";
-  if (done) liClass += " completed";
-  if (edit) liClass += " editing";
+  let liClass = ' ';
+  if (done) liClass += ' completed';
+  if (edit) liClass += ' editing';
 
   return (
     <li className={liClass}>
@@ -64,12 +54,7 @@ const Task = ({
           onSubmitEdit(e);
         }}
       >
-        <input
-          className="edit"
-          type="text"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        ></input>
+        <input className="edit" type="text" value={value} onChange={(e) => setValue(e.target.value)}></input>
       </form>
     </li>
   );

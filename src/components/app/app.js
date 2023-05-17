@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import NewTaskForm from "../new-task-form/new-task-form.js";
-import TaskList from "../task-list/task-list.js";
-import Footer from "../footer/footer.js";
+import NewTaskForm from '../new-task-form/new-task-form.js';
+import TaskList from '../task-list/task-list.js';
+import Footer from '../footer/footer.js';
 
 const App = () => {
   const [todoData, setTodoData] = useState([]);
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState('all');
 
   const generateId = () => {
     const date = Date.now();
@@ -25,14 +25,14 @@ const App = () => {
     };
     const newArr = [...todoData];
     newArr.push(newItem);
-    setTodoData(newArr);
+    setTodoData((todoData) => newArr);
   };
 
   const deleteItem = (id) => {
     const index = todoData.findIndex((el) => el.id === id);
     const newArr = [...todoData];
     newArr.splice(index, 1);
-    setTodoData(newArr);
+    setTodoData((todoData) => newArr);
   };
 
   const completeItem = (id, done) => {
@@ -40,14 +40,14 @@ const App = () => {
       if (el.id === id) el.done = done;
       return el;
     });
-    setTodoData(newArr);
+    setTodoData((todoData) => newArr);
   };
 
   const updateEdit = (id, text) => {
     const index = todoData.findIndex((el) => el.id === id);
     const newArr = [...todoData];
     newArr[index].label = text;
-    setTodoData(newArr);
+    setTodoData((todoData) => newArr);
   };
 
   const changeFilter = (filterName) => {
@@ -56,16 +56,16 @@ const App = () => {
 
   const clear = () => {
     const newArr = todoData.filter((elem) => elem.done !== true);
-    setTodoData(newArr);
+    setTodoData((todoData) => newArr);
   };
 
   const filterItems = (todoData, filter) => {
     switch (filter) {
-      case "all":
+      case 'all':
         return todoData;
-      case "active":
+      case 'active':
         return todoData.filter((item) => !item.done);
-      case "completed":
+      case 'completed':
         return todoData.filter((item) => item.done);
       default:
         return todoData;

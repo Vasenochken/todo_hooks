@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 const Timer = ({ initialTime }) => {
   const [time, setTime] = useState(initialTime);
@@ -8,7 +8,7 @@ const Timer = ({ initialTime }) => {
     let intervalId;
     if (isRunning && time > 0) {
       intervalId = setInterval(() => {
-        setTime(time - 1);
+        setTime((time) => time - 1);
       }, 1000);
     }
     return () => clearInterval(intervalId);
@@ -27,16 +27,8 @@ const Timer = ({ initialTime }) => {
 
   return (
     <>
-      <button
-        className="icon icon-play"
-        onClick={startTimer}
-        disabled={isRunning}
-      ></button>
-      <button
-        className="icon icon-pause"
-        onClick={pauseTimer}
-        disabled={!isRunning}
-      ></button>
+      <button className="icon icon-play" onClick={startTimer} disabled={isRunning}></button>
+      <button className="icon icon-pause" onClick={pauseTimer} disabled={!isRunning}></button>
       {` ${minutes}:${seconds}`}
     </>
   );

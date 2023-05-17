@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 const NewTaskForm = ({ onItemAdd }) => {
-  const [label, setLabel] = useState("");
-  const [min, setMinute] = useState("");
-  const [sec, setSecond] = useState("");
+  const [label, setLabel] = useState('');
+  const [min, setMinute] = useState('');
+  const [sec, setSecond] = useState('');
 
   const onEnter = (event) => {
-    if (event.key === "Enter" && label.trim()) {
+    if (event.key === 'Enter' && label.trim()) {
       onItemAdd(label, min, sec);
-      setLabel("");
-      setMinute("");
-      setSecond("");
+      setLabel('');
+      setMinute('');
+      setSecond('');
     }
   };
 
